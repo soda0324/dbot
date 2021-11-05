@@ -21,7 +21,7 @@ async def 핑(ctx):
 
 @bot.event()
 async def on_message(message):
-    if message.content.startswith("!투표"):
+    if message.content.startswith(",투표"):
         vote = message.content[4:].split("/")
         channel = message.channel
         await channel.send("투표를 시작합니다.")
@@ -39,7 +39,7 @@ async def on_message(message):
         msg = random.choice(messagesplit)+'을 골랐습니다.'
         await message.channel.send(msg)
 
-    await app.process_commands(message)
+    await bot.process_commands(message)
 
      
 bot.run(os.environ['token'])
