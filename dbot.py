@@ -15,8 +15,7 @@ async def on_ready():
 async def 청소(ctx, amount : int):
     embed = discord.Embed(title="채팅청소", description="총 " + amount + " 채팅 제거", color = 0x000000) 
     await ctx.channel.purge(limit=amount)
-    await ctx.channel.send(embed=embed)
-    
+    await ctx.send(embed=embed)
     
 
      
