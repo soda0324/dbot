@@ -13,8 +13,8 @@ async def on_ready():
 
 @bot.command()
 async def 청소(ctx, amount : int):
-    embed = discord.Embed(title="채팅청소", description="총 " + amount + " 채팅 제거", color = 0x000000) 
     await ctx.channel.purge(limit=amount)
+    embed = discord.Embed(title="채팅청소", description="총 " + amount + " 채팅 제거", color = 0x000000) 
     await ctx.send(embed=embed)
     
 
