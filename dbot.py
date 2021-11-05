@@ -13,16 +13,10 @@ async def on_ready():
 
 @bot.command()
 async def 청소(ctx, amount : int):
+    embed = discord.Embed(title="채팅청소", description="총 " + amount + " 채팅 제거", color = 0x000000) 
     await ctx.channel.purge(limit=amount)
+    await ctx.channel.send(embed=embed)
     
-@bot.event()
-async def on_message(message):
-    if message.content.startswith(",골라"):
-        vote = message.content[4:].split("/")
-        await bot.send_message(message.channel, vote[0])
-        for i in range(1, len(vote)):
-            choose = await bot.send_message(message.channel, vote[i])
-            await bot.add_reaction('👍')
     
 
      
