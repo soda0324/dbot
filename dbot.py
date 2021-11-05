@@ -17,7 +17,7 @@ async def 청소(ctx, amount : int):
     
 @bot.event()
 async def on_message(message):
-    if message.content.startswith("!골라"):
+    if message.content.startswith(",골라"):
         vote = message.content[4:].split("/")
         await bot.send_message(message.channel, vote[0])
         for i in range(1, len(vote)):
