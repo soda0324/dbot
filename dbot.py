@@ -11,5 +11,9 @@ async def on_ready():
     print('connection was succesful')
     await bot.change_presence(status=discord.Status.online,  activity=discord.Game(name="게임"))
 
+@bot.command()
+async def 청소(ctx, amount : int):
+    await ctx.channel.purge(limit=amount)
+
      
 bot.run(os.environ['token'])
