@@ -15,5 +15,8 @@ async def on_ready():
 async def 청소(ctx, amount : int):
     await ctx.channel.purge(limit=amount)
 
+async def 핑(ctx):
+    await ctx.send(f'```ping : {round(bot.latency * 1000)}ms```')
+
      
 bot.run(os.environ['token'])
