@@ -15,7 +15,14 @@ async def on_ready():
 async def 청소(ctx, amount : int):
     await ctx.channel.purge(limit=amount)
     
-
+@bot.event()
+async def on_message(message):
+    if message.content.startswith("!골라"):
+        vote = message.content[4:].split("/")
+        await bot.send_message(message.channel, vote[0])
+        for i in range(1, len(vote)):
+            choose = await bot.send_message(message.channel, vote[i])
+            await bot.add_reaction('👍')
     
 
      
