@@ -16,5 +16,15 @@ async def on_ready():
 async def 청소(ctx, amount : int):
     await ctx.channel.purge(limit=amount)
 
+@bot.command()
+async def join(ctx):
+    if ctx.author.voice and ctx.author.voice.channel:
+        channel = ctx.author.voice.channel
+        await channel.connet()
+    else:
+        await ctx.send("음성채널 없음")
+
+
+
      
 bot.run(os.environ['token'])
