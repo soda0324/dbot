@@ -1,9 +1,7 @@
 import discord
 import os
-from discord import guild
-from discord.channel import VoiceChannel
 from discord.ext import commands
-import youtube_dl
+
  
 bot = commands.Bot(command_prefix=',')
  
