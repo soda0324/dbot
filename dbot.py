@@ -16,6 +16,23 @@ async def on_ready():
 async def 청소(ctx, amount : int):
     await ctx.channel.purge(limit=amount)
 
+
+@bot.command(pass_context = True)
+async def join(ctx):
+    if(ctx.author.voice):
+        channel = ctx. message.author.voice.channel
+        await channel.connet()
+    else:
+        await ctx.send("음성채널 없음")
+
+@bot.command(pass_context = True)
+async def leave(ctx):
+    if(ctx.voice_client):
+        await ctx.guld.voice_client.discoonect()
+    else:
+        await ctx.send("..")
+
+'''
 @bot.command()
 async def join(ctx):
     print(ctx.author.voice)
@@ -25,7 +42,7 @@ async def join(ctx):
         await channel.connet()
     else:
         await ctx.send("음성채널 없음")
-
+'''
 
 
      
