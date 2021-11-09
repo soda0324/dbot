@@ -18,6 +18,7 @@ async def 청소(ctx, amount : int):
 
 @bot.command()
 async def join(ctx):
+    print(ctx.author.voice)
     if ctx.author.voice and ctx.author.voice.channel:
         channel = ctx.author.voice.channel
         await channel.connet()
