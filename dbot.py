@@ -1,5 +1,6 @@
 import discord
 import os
+import youtube_dl
 from discord.ext import commands
 
  
@@ -17,26 +18,24 @@ async def 청소(ctx, amount : int):
     await ctx.channel.purge(limit=amount)
 
 
-'''
 @bot.command()
-async def join(ctx):
+async def play(ctx, url):
     channel = ctx.author.voice.channel
-    await channel.connect()
+    if bot.voice_clients == []:
+    	await channel.connect()
+    	await ctx.send("connected to the voice channel, " + str(bot.voice_clients[0].channel))
+
+    ydl_opts = {'format': 'bestaudio'}
+    FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(url, download=False)
+        URL = info['formats'][0]['url']
+    voice = bot.voice_clients[0]
+    voice.play(discord.FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
+
 @bot.command()
 async def leave(ctx):
-    await ctx.voice_client.disconnect()
-
-@bot.command()
-async def join(ctx):
-    print(ctx.author.voice)
-    print(ctx.author.voice.channel)
-    if ctx.author.voice and ctx.author.voice.channel:
-        channel = ctx.author.voice.channel
-        await channel.connet()
-    else:
-        await ctx.send("음성채널 없음")
-'''
-
+    await bot.voice_clients[0].disconnect()
 
      
 bot.run(os.environ['token'])
